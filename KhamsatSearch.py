@@ -6,8 +6,9 @@ import time
 Path = "C:\\Users\\ASUS\\Downloads\\chromedriver.exe"
 driver = webdriver.Chrome(Path)
 driver.get("https://khamsat.com/community/requests")
-r = 10
-toSearchFor = ["بايثون", "أندرويد","باركود","سكريبت", "اندرويد"]
+numberOfClicks = 5
+toSearchFor =["أندرويد"]
+
 def getAllRequests():
     return driver.find_elements_by_class_name("ajaxbtn")
 def getRequests():
@@ -18,8 +19,8 @@ def getRequests():
            requests.append(request)
     return requests
     
-for i in range(r):
-    while len(getAllRequests()) < r*25:
+for i in range(numberOfClicks):
+    while len(getAllRequests()) < numberOfClicks*25:
 
         try:    WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.ID, "community_loadmore_btn"))).click()
         except: pass
